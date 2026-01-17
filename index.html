@@ -1,10 +1,234 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>My First Website</title>
-  </head>
-  <body>
-    <h1>Hello World 👋</h1>
-    <p>This is my first website on GitHub Pages.</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Essam Cars | Luxury Limousine Booking in Egypt</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    header {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+      url("https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=1600&q=80") center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      animation: fadeIn 1.5s ease;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    header p {
+      margin: 20px 0;
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 14px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: #22c55e;
+    }
+
+    .btn-primary:hover {
+      background: #16a34a;
+      transform: scale(1.05);
+    }
+
+    .btn-secondary {
+      border: 2px solid #22c55e;
+    }
+
+    .btn-secondary:hover {
+      background: #22c55e;
+    }
+
+    section {
+      padding: 80px 10%;
+      animation: fadeUp 1.5s ease;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .cars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .car-card {
+      background: #020617;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      transition: 0.4s;
+    }
+
+    .car-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .car-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .car-card .content {
+      padding: 20px;
+    }
+
+    .car-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .socials a {
+      margin: 0 10px;
+      font-size: 1.1rem;
+      color: #22c55e;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #020617;
+      opacity: 0.8;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <header>
+    <div>
+      <h1>Essam Cars</h1>
+      <p>Luxury Limousine Booking Services Across Egypt</p>
+
+      <!-- WhatsApp Booking -->
+      <a href="https://wa.me/201112734413" class="btn btn-primary" target="_blank">
+        Book via WhatsApp
+      </a>
+
+      <a href="#cars" class="btn btn-secondary">
+        View Our Fleet
+      </a>
+    </div>
+  </header>
+
+  <!-- CARS -->
+  <section id="cars">
+    <div class="section-title">
+      <h2>Our Luxury Fleet</h2>
+      <p>Comfort • Safety • Elegance</p>
+    </div>
+
+    <div class="cars">
+      <div class="car-card">
+        <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1b?auto=format&fit=crop&w=800&q=80" alt="Luxury Sedan">
+        <div class="content">
+          <h3>Luxury Sedan</h3>
+          <p>Perfect for airport transfers and business trips.</p>
+          <a href="https://wa.me/201112734413" class="btn btn-primary" target="_blank">Book Now</a>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <img src="https://images.unsplash.com/photo-1549921296-3caa7f59c2ad?auto=format&fit=crop&w=800&q=80" alt="SUV">
+        <div class="content">
+          <h3>Executive SUV</h3>
+          <p>Spacious, powerful, and comfortable for families.</p>
+          <a href="https://wa.me/201112734413" class="btn btn-primary" target="_blank">Book Now</a>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=800&q=80" alt="Limousine">
+        <div class="content">
+          <h3>VIP Limousine</h3>
+          <p>Premium experience for special occasions.</p>
+          <a href="https://wa.me/201112734413" class="btn btn-primary" target="_blank">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <div class="section-title">
+      <h2>Contact & Social Media</h2>
+      <p>Book instantly or follow us online</p>
+    </div>
+
+    <div class="socials">
+      <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+      <a href="https://www.tiktok.com/" target="_blank">TikTok</a>
+      <a href="https://wa.me/201112734413" target="_blank">WhatsApp</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Essam Cars — Luxury Limousine Services in Egypt
+  </footer>
+
+</body>
 </html>
