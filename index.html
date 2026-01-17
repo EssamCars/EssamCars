@@ -3,232 +3,775 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Essam Cars | Luxury Limousine Booking in Egypt</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+  <title>Essam Cars | Premium Limousine Services in Egypt</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
+    :root {
+      --primary: #d4af37;
+      --secondary: #1a1a2e;
+      --accent: #16213e;
+      --dark: #0f0f1e;
+      --light: #ffffff;
+      --gray: #e8e8e8;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      background: #0f172a;
-      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
       line-height: 1.6;
     }
 
-    header {
+    body.rtl {
+      font-family: 'Cairo', sans-serif;
+      direction: rtl;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 15, 30, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+      animation: slideDown 0.8s ease;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), #f0d879);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 2px;
+    }
+
+    .lang-switch {
+      background: var(--primary);
+      color: var(--dark);
+      border: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    .lang-switch:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    /* Hero Section */
+    .hero {
       height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-      url("https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=1600&q=80") center/cover;
+      background: linear-gradient(rgba(15,15,30,0.7), rgba(15,15,30,0.8)),
+        url("https://images.unsplash.com/photo-1563720360172-67b8f3dce741?auto=format&fit=crop&w=1600&q=80") center/cover fixed;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      animation: fadeIn 1.5s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    header h1 {
-      font-size: 3rem;
-      font-weight: 700;
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(212,175,55,0.1), transparent);
+      animation: pulse 4s ease-in-out infinite;
     }
 
-    header p {
-      margin: 20px 0;
-      font-size: 1.2rem;
-      opacity: 0.9;
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 1.2s ease;
+    }
+
+    .hero h1 {
+      font-size: 4.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--primary), #f0d879);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 30px rgba(212,175,55,0.3);
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      margin-bottom: 40px;
+      opacity: 0.95;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     .btn {
-      display: inline-block;
-      margin: 10px;
-      padding: 14px 30px;
-      border-radius: 30px;
+      padding: 16px 40px;
+      border-radius: 50px;
       text-decoration: none;
-      color: #fff;
-      font-weight: 600;
-      transition: 0.3s;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.4s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn:hover::before {
+      width: 300px;
+      height: 300px;
     }
 
     .btn-primary {
-      background: #22c55e;
+      background: linear-gradient(135deg, var(--primary), #f0d879);
+      color: var(--dark);
+      box-shadow: 0 10px 30px rgba(212,175,55,0.3);
     }
 
     .btn-primary:hover {
-      background: #16a34a;
-      transform: scale(1.05);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(212,175,55,0.5);
     }
 
     .btn-secondary {
-      border: 2px solid #22c55e;
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
     }
 
     .btn-secondary:hover {
-      background: #22c55e;
+      background: var(--primary);
+      color: var(--dark);
     }
 
+    /* Section Styles */
     section {
-      padding: 80px 10%;
-      animation: fadeUp 1.5s ease;
+      padding: 100px 8%;
+      position: relative;
     }
 
-    .section-title {
+    .section-header {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 70px;
+      animation: fadeInUp 1s ease;
     }
 
-    .section-title h2 {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
+    .section-header h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, var(--primary), #f0d879);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .cars {
+    .section-header p {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      font-weight: 300;
+    }
+
+    /* Fleet Section */
+    .fleet-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
     }
 
     .car-card {
-      background: #020617;
-      border-radius: 15px;
+      background: linear-gradient(135deg, var(--accent), var(--secondary));
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-      transition: 0.4s;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      transition: all 0.5s ease;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .car-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, transparent, rgba(212,175,55,0.1));
+      opacity: 0;
+      transition: opacity 0.5s;
     }
 
     .car-card:hover {
-      transform: translateY(-10px);
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 30px 80px rgba(212,175,55,0.3);
     }
 
-    .car-card img {
+    .car-card:hover::before {
+      opacity: 1;
+    }
+
+    .car-image {
       width: 100%;
-      height: 200px;
+      height: 250px;
       object-fit: cover;
+      transition: transform 0.6s ease;
     }
 
-    .car-card .content {
-      padding: 20px;
+    .car-card:hover .car-image {
+      transform: scale(1.1);
     }
 
-    .car-card h3 {
-      margin-bottom: 10px;
+    .car-content {
+      padding: 30px;
+      position: relative;
+      z-index: 2;
     }
 
-    .contact {
+    .car-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    .car-content p {
+      margin-bottom: 25px;
+      opacity: 0.9;
+      line-height: 1.8;
+    }
+
+    .car-features {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .feature {
+      background: rgba(212,175,55,0.1);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      border: 1px solid rgba(212,175,55,0.3);
+    }
+
+    /* Services Section */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 35px;
+      margin-top: 50px;
+    }
+
+    .service-card {
+      background: var(--accent);
+      padding: 40px 30px;
+      border-radius: 15px;
+      text-align: center;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(212,175,55,0.2);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      background: var(--secondary);
+      border-color: var(--primary);
+      box-shadow: 0 20px 50px rgba(212,175,55,0.2);
+    }
+
+    .service-icon {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      display: inline-block;
+      animation: bounce 2s infinite;
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    /* Contact Section */
+    .contact-container {
+      max-width: 900px;
+      margin: 0 auto;
       text-align: center;
     }
 
-    .socials a {
-      margin: 0 10px;
-      font-size: 1.1rem;
-      color: #22c55e;
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      width: 180px;
+      padding: 20px;
+      border-radius: 15px;
       text-decoration: none;
-      font-weight: 600;
+      color: var(--light);
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
     }
 
+    .social-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s;
+    }
+
+    .social-btn:hover::before {
+      left: 100%;
+    }
+
+    .social-icon {
+      font-size: 2.5rem;
+    }
+
+    .whatsapp {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+    }
+
+    .whatsapp:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(37,211,102,0.4);
+    }
+
+    .facebook {
+      background: linear-gradient(135deg, #1877F2, #0d5dbf);
+    }
+
+    .facebook:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(24,119,242,0.4);
+    }
+
+    .tiktok {
+      background: linear-gradient(135deg, #000000, #333333);
+    }
+
+    .tiktok:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    }
+
+    .phone {
+      background: linear-gradient(135deg, var(--primary), #f0d879);
+      color: var(--dark);
+    }
+
+    .phone:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(212,175,55,0.4);
+    }
+
+    /* Footer */
     footer {
+      background: var(--secondary);
+      padding: 40px 8%;
       text-align: center;
-      padding: 20px;
-      background: #020617;
+      border-top: 1px solid rgba(212,175,55,0.2);
+    }
+
+    footer p {
       opacity: 0.8;
+      font-size: 1rem;
     }
 
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
+    /* Animations */
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
-    @keyframes fadeUp {
+    @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(50px);
       }
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.3;
+      }
+      50% {
+        opacity: 0.6;
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .section-header h2 {
+        font-size: 2rem;
+      }
+
+      nav {
+        padding: 15px 5%;
+      }
+
+      section {
+        padding: 60px 5%;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-indicator::before {
+      content: '↓';
+      font-size: 2rem;
+      color: var(--primary);
+    }
   </style>
 </head>
 
 <body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo" id="navLogo">ESSAM CARS</div>
+    <button class="lang-switch" onclick="toggleLanguage()" id="langBtn">العربية</button>
+  </nav>
 
-  <!-- HERO -->
-  <header>
-    <div>
-      <h1>Essam Cars</h1>
-      <p>Luxury Limousine Booking Services Across Egypt</p>
-
-      <!-- WhatsApp Booking -->
-      <a href="https://wa.me/201112734413" class="btn btn-primary" target="_blank">
-        Book via WhatsApp
-      </a>
-
-      <a href="#cars" class="btn btn-secondary">
-        View Our Fleet
-      </a>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 id="heroTitle">ESSAM CARS</h1>
+      <p id="heroSubtitle">Premium Limousine Services in Egypt</p>
+      <div class="cta-buttons">
+        <a href="https://wa.me/201061127016" class="btn btn-primary" target="_blank">
+          <span>📱</span>
+          <span id="bookBtn">Book Now via WhatsApp</span>
+        </a>
+        <a href="#fleet" class="btn btn-secondary">
+          <span>🚗</span>
+          <span id="fleetBtn">View Our Fleet</span>
+        </a>
+      </div>
     </div>
-  </header>
+    <div class="scroll-indicator"></div>
+  </section>
 
-  <!-- CARS -->
-  <section id="cars">
-    <div class="section-title">
-      <h2>Our Luxury Fleet</h2>
-      <p>Comfort • Safety • Elegance</p>
+  <!-- Fleet Section -->
+  <section id="fleet">
+    <div class="section-header">
+      <h2 id="fleetTitle">Our Luxury Fleet</h2>
+      <p id="fleetSubtitle">Experience comfort, elegance, and professionalism</p>
     </div>
 
-    <div class="cars">
+    <div class="fleet-grid">
       <div class="car-card">
-        <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1b?auto=format&fit=crop&w=800&q=80" alt="Luxury Sedan">
-        <div class="content">
-          <h3>Luxury Sedan</h3>
-          <p>Perfect for airport transfers and business trips.</p>
-          <a href="https://wa.me/201112734413" class="btn btn-primary" target="_blank">Book Now</a>
+        <img class="car-image" src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80" alt="Luxury Sedan">
+        <div class="car-content">
+          <h3 id="car1Title">Executive Sedan</h3>
+          <p id="car1Desc">Perfect for business meetings and airport transfers with ultimate comfort and style.</p>
+          <div class="car-features">
+            <span class="feature">Leather Seats</span>
+            <span class="feature">Wi-Fi</span>
+            <span class="feature">A/C</span>
+          </div>
+          <a href="https://wa.me/201061127016" class="btn btn-primary" target="_blank">
+            <span id="bookNow1">Book Now</span>
+          </a>
         </div>
       </div>
 
       <div class="car-card">
-        <img src="https://images.unsplash.com/photo-1549921296-3caa7f59c2ad?auto=format&fit=crop&w=800&q=80" alt="SUV">
-        <div class="content">
-          <h3>Executive SUV</h3>
-          <p>Spacious, powerful, and comfortable for families.</p>
-          <a href="https://wa.me/201112734413" class="btn btn-primary" target="_blank">Book Now</a>
+        <img class="car-image" src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80" alt="SUV">
+        <div class="car-content">
+          <h3 id="car2Title">Luxury SUV</h3>
+          <p id="car2Desc">Spacious and powerful, ideal for families and group travel with premium amenities.</p>
+          <div class="car-features">
+            <span class="feature">7 Seats</span>
+            <span class="feature">Premium Sound</span>
+            <span class="feature">GPS</span>
+          </div>
+          <a href="https://wa.me/201061127016" class="btn btn-primary" target="_blank">
+            <span id="bookNow2">Book Now</span>
+          </a>
         </div>
       </div>
 
       <div class="car-card">
-        <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=800&q=80" alt="Limousine">
-        <div class="content">
-          <h3>VIP Limousine</h3>
-          <p>Premium experience for special occasions.</p>
-          <a href="https://wa.me/201112734413" class="btn btn-primary" target="_blank">Book Now</a>
+        <img class="car-image" src="https://images.unsplash.com/photo-1563720360172-67b8f3dce741?auto=format&fit=crop&w=800&q=80" alt="Limousine">
+        <div class="car-content">
+          <h3 id="car3Title">VIP Limousine</h3>
+          <p id="car3Desc">The ultimate luxury experience for weddings, special events, and VIP occasions.</p>
+          <div class="car-features">
+            <span class="feature">Bar Service</span>
+            <span class="feature">Entertainment</span>
+            <span class="feature">Privacy</span>
+          </div>
+          <a href="https://wa.me/201061127016" class="btn btn-primary" target="_blank">
+            <span id="bookNow3">Book Now</span>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section class="contact">
-    <div class="section-title">
-      <h2>Contact & Social Media</h2>
-      <p>Book instantly or follow us online</p>
+  <!-- Services Section -->
+  <section>
+    <div class="section-header">
+      <h2 id="servicesTitle">Our Services</h2>
+      <p id="servicesSubtitle">Tailored solutions for every journey</p>
     </div>
 
-    <div class="socials">
-      <a href="https://www.facebook.com/" target="_blank">Facebook</a>
-      <a href="https://www.tiktok.com/" target="_blank">TikTok</a>
-      <a href="https://wa.me/201112734413" target="_blank">WhatsApp</a>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">✈️</div>
+        <h3 id="service1">Airport Transfers</h3>
+        <p id="service1Desc">Reliable pickup and drop-off services to all Egyptian airports</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💼</div>
+        <h3 id="service2">Corporate Travel</h3>
+        <p id="service2Desc">Professional chauffeur services for executives and business events</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💒</div>
+        <h3 id="service3">Special Events</h3>
+        <p id="service3Desc">Make your wedding or celebration unforgettable with our VIP fleet</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌍</div>
+        <h3 id="service4">City Tours</h3>
+        <p id="service4Desc">Explore Egypt's wonders in comfort with our guided luxury tours</p>
+      </div>
     </div>
   </section>
 
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="contact-container">
+      <div class="section-header">
+        <h2 id="contactTitle">Get In Touch</h2>
+        <p id="contactSubtitle">Book your ride or connect with us on social media</p>
+      </div>
+
+      <div class="social-links">
+        <a href="https://wa.me/201061127016" class="social-btn whatsapp" target="_blank">
+          <span class="social-icon">💬</span>
+          <span>WhatsApp</span>
+        </a>
+        <a href="tel:+201061127016" class="social-btn phone">
+          <span class="social-icon">📞</span>
+          <span id="callBtn">Call Us</span>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61572059085123" class="social-btn facebook" target="_blank">
+          <span class="social-icon">📘</span>
+          <span>Facebook</span>
+        </a>
+        <a href="https://www.tiktok.com/@essamcars" class="social-btn tiktok" target="_blank">
+          <span class="social-icon">🎵</span>
+          <span>TikTok</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    © 2026 Essam Cars — Luxury Limousine Services in Egypt
+    <p id="footerText">© 2026 Essam Cars - Premium Limousine Services in Egypt. All rights reserved.</p>
   </footer>
 
+  <script>
+    let currentLang = 'en';
+
+    const translations = {
+      en: {
+        navLogo: 'ESSAM CARS',
+        langBtn: 'العربية',
+        heroTitle: 'ESSAM CARS',
+        heroSubtitle: 'Premium Limousine Services in Egypt',
+        bookBtn: 'Book Now via WhatsApp',
+        fleetBtn: 'View Our Fleet',
+        fleetTitle: 'Our Luxury Fleet',
+        fleetSubtitle: 'Experience comfort, elegance, and professionalism',
+        car1Title: 'Executive Sedan',
+        car1Desc: 'Perfect for business meetings and airport transfers with ultimate comfort and style.',
+        car2Title: 'Luxury SUV',
+        car2Desc: 'Spacious and powerful, ideal for families and group travel with premium amenities.',
+        car3Title: 'VIP Limousine',
+        car3Desc: 'The ultimate luxury experience for weddings, special events, and VIP occasions.',
+        bookNow1: 'Book Now',
+        bookNow2: 'Book Now',
+        bookNow3: 'Book Now',
+        servicesTitle: 'Our Services',
+        servicesSubtitle: 'Tailored solutions for every journey',
+        service1: 'Airport Transfers',
+        service1Desc: 'Reliable pickup and drop-off services to all Egyptian airports',
+        service2: 'Corporate Travel',
+        service2Desc: 'Professional chauffeur services for executives and business events',
+        service3: 'Special Events',
+        service3Desc: 'Make your wedding or celebration unforgettable with our VIP fleet',
+        service4: 'City Tours',
+        service4Desc: 'Explore Egypt\'s wonders in comfort with our guided luxury tours',
+        contactTitle: 'Get In Touch',
+        contactSubtitle: 'Book your ride or connect with us on social media',
+        callBtn: 'Call Us',
+        footerText: '© 2026 Essam Cars - Premium Limousine Services in Egypt. All rights reserved.'
+      },
+      ar: {
+        navLogo: 'عصام كارز',
+        langBtn: 'English',
+        heroTitle: 'عصام كارز',
+        heroSubtitle: 'خدمات ليموزين فاخرة في مصر',
+        bookBtn: 'احجز الآن عبر واتساب',
+        fleetBtn: 'شاهد أسطولنا',
+        fleetTitle: 'أسطولنا الفاخر',
+        fleetSubtitle: 'استمتع بالراحة والأناقة والاحترافية',
+        car1Title: 'سيدان تنفيذية',
+        car1Desc: 'مثالية لاجتماعات العمل ونقل المطارات مع أقصى درجات الراحة والأناقة.',
+        car2Title: 'سيارة دفع رباعي فاخرة',
+        car2Desc: 'واسعة وقوية، مثالية للعائلات والسفر الجماعي مع وسائل راحة فاخرة.',
+        car3Title: 'ليموزين VIP',
+        car3Desc: 'تجربة الفخامة المطلقة لحفلات الزفاف والمناسبات الخاصة وتنقلات كبار الشخصيات.',
+        bookNow1: 'احجز الآن',
+        bookNow2: 'احجز الآن',
+        bookNow3: 'احجز الآن',
+        servicesTitle: 'خدماتنا',
+        servicesSubtitle: 'حلول مخصصة لكل رحلة',
+        service1: 'نقل المطارات',
+        service1Desc: 'خدمات نقل موثوقة من وإلى جميع المطارات المصرية',
+        service2: 'السفر المؤسسي',
+        service2Desc: 'خدمات سائقين محترفة للمديرين التنفيذيين والفعاليات التجارية',
+        service3: 'المناسبات الخاصة',
+        service3Desc: 'اجعل حفل زفافك أو احتفالك لا يُنسى مع أسطولنا المميز',
+        service4: 'جولات المدينة',
+        service4Desc: 'استكشف عجائب مصر بكل راحة مع جولاتنا الفاخرة المصحوبة بمرشدين',
+        contactTitle: 'تواصل معنا',
+        contactSubtitle: 'احجز رحلتك أو تواصل معنا عبر وسائل التواصل الاجتماعي',
+        callBtn: 'اتصل بنا',
+        footerText: '© 2026 عصام كارز - خدمات ليموزين فاخرة في مصر. جميع الحقوق محفوظة.'
+      }
+    };
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'ar' : 'en';
+      document.body.classList.toggle('rtl', currentLang === 'ar');
+      
+      const t = translations[currentLang];
+      for (let key in t) {
+        const el = document.getElementById(key);
+        if (el) el.textContent = t[key];
+      }
+    }
+
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 1s ease forwards';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.car-card, .service-card').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>
